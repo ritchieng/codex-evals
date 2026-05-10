@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-evals"
+version = "0.1.0"
+description = "Local-first evaluation reports for Codex conversations, skills, and bundles."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Ritchie Ng" }]
+keywords = ["codex", "evals", "skills", "conversation-quality"]
+
+[project.scripts]
+codex-evals = "codex_evals.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["codex_evals*"]

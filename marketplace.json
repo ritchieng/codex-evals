@@ -1,0 +1,20 @@
+{
+  "name": "codex-evals",
+  "interface": {
+    "displayName": "Codex Evals"
+  },
+  "plugins": [
+    {
+      "name": "codex-evals",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-evals"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
