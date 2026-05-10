@@ -11,7 +11,7 @@ and get a short answer to:
 > What just happened, how good was it, and what should improve first?
 
 The user surface is intentionally small. The plugin handles the repeatable
-scorecard, evidence checks, skill/plugin review, and optional local CLI reports
+scorecard, evidence checks, skill/plugin review, demos, and setup checks
 underneath.
 
 ## Install
@@ -21,7 +21,7 @@ Add this repo as a Codex plugin marketplace.
 In Codex, open **Add marketplace** and use:
 
 ```text
-Source: <this repo Git URL or local folder>
+Source: https://github.com/ritchieng/codex-evals
 Git ref: main
 Sparse paths:
 marketplace.json
@@ -52,6 +52,8 @@ Then run:
 /eval bundle
 /eval why
 /eval fix-first
+/eval demo
+/eval doctor
 ```
 
 - `/eval` evaluates the current thread.
@@ -59,6 +61,8 @@ Then run:
 - `/eval bundle` evaluates the conversation plus related skills/plugins.
 - `/eval why` explains the score with evidence.
 - `/eval fix-first` returns only the highest-leverage improvements.
+- `/eval demo` shows a sample report.
+- `/eval doctor` checks whether the plugin package is wired correctly.
 
 Every report starts with:
 
@@ -80,38 +84,6 @@ Every report starts with:
 Scores are traceable to evidence. Missing receipts lower confidence, even when
 the work sounds plausible.
 
-## Optional CLI
-
-The plugin is the main experience. Use the CLI for local reports, demos, and
-debugging.
-
-Run without installing:
-
-```bash
-python3 -m codex_evals.cli demo
-python3 -m codex_evals.cli doctor
-python3 -m codex_evals.cli conversation examples/onboarding-thread.md
-```
-
-Install the command name:
-
-```bash
-python3 -m pip install -e .
-```
-
-Then use:
-
-```bash
-codex-evals demo
-codex-evals doctor
-codex-evals conversation transcript.md
-codex-evals skill plugins/codex-evals/skills/evaluate-skill/SKILL.md
-codex-evals bundle --current
-```
-
-Outside Codex, `--current` reads `CODEX_EVALS_THREAD_TEXT`,
-`CODEX_EVALS_CURRENT_THREAD`, or `.codex-evals/current-thread.md` when present.
-
 ## Files
 
 ```text
@@ -132,7 +104,7 @@ Useful files:
 
 - [marketplace.json](marketplace.json): marketplace entry for Codex.
 - [plugins/codex-evals/commands/eval.md](plugins/codex-evals/commands/eval.md): `/eval` command behavior.
-- [codex_evals](codex_evals): local CLI/report engine.
+- [codex_evals](codex_evals): shared report engine used by the plugin package.
 - [examples/onboarding-thread.md](examples/onboarding-thread.md): sample transcript for demos.
 - [templates/eval-card.md](templates/eval-card.md): human-readable report template.
 
