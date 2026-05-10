@@ -24,7 +24,7 @@ In Codex, open **Add marketplace** and use:
 Source: https://github.com/ritchieng/codex-evals
 Git ref: main
 Sparse paths:
-marketplace.json
+.agents/plugins
 plugins/codex-evals
 ```
 
@@ -34,7 +34,7 @@ For local development on this machine:
 Source: /Users/ritchieng/Repos/codex-evals
 Git ref: main
 Sparse paths:
-marketplace.json
+.agents/plugins
 plugins/codex-evals
 ```
 
@@ -87,7 +87,7 @@ the work sounds plausible.
 ## Files
 
 ```text
-marketplace.json
+.agents/plugins/marketplace.json
 plugins/codex-evals/
 +-- .codex-plugin/plugin.json
 +-- commands/eval.md
@@ -102,7 +102,7 @@ templates/
 
 Useful files:
 
-- [marketplace.json](marketplace.json): marketplace entry for Codex.
+- [.agents/plugins/marketplace.json](.agents/plugins/marketplace.json): marketplace entry for Codex.
 - [plugins/codex-evals/commands/eval.md](plugins/codex-evals/commands/eval.md): `/eval` command behavior.
 - [codex_evals](codex_evals): shared report engine used by the plugin package.
 - [examples/onboarding-thread.md](examples/onboarding-thread.md): sample transcript for demos.
@@ -112,6 +112,6 @@ Useful files:
 
 ```bash
 python3 -m unittest
-python3 -m json.tool marketplace.json
+python3 -m json.tool .agents/plugins/marketplace.json
 python3 -m json.tool plugins/codex-evals/.codex-plugin/plugin.json
 ```

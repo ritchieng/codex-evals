@@ -23,9 +23,9 @@ User experience:
 
 Implementation path:
 
-- This plugin is exposed through the repo root `marketplace.json` for Add marketplace imports.
+- This plugin is exposed through `.agents/plugins/marketplace.json` for Add Marketplace imports.
 - For current-thread review, use the `evaluate-conversation` skill.
 - For skill review, use the `evaluate-skill` skill.
 - For bundle review, use the `evaluate-bundle` skill.
 - For `demo`, use the packaged demo transcript or produce the same report shape directly.
-- For `doctor`, check that `marketplace.json`, `.codex-plugin/plugin.json`, `commands/eval.md`, and the three evaluation skills are present and coherent.
+- For `doctor`, check that `.agents/plugins/marketplace.json`, `.codex-plugin/plugin.json`, `commands/eval.md`, and the three evaluation skills are present and coherent.

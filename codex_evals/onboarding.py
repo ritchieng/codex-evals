@@ -270,30 +270,30 @@ def _marketplace_check(root: Path) -> dict[str, str]:
 
 
 def _packaged_marketplace_check(root: Path) -> dict[str, str]:
-    marketplace_path = root / "marketplace.json"
+    marketplace_path = root / ".agents" / "plugins" / "marketplace.json"
     if not marketplace_path.exists():
         return _check(
             "Packaged marketplace",
             "warn",
-            "No root marketplace.json found for Add marketplace import.",
-            "Add `marketplace.json` with a `./plugins/codex-evals` entry.",
+            "No `.agents/plugins/marketplace.json` found for Add Marketplace import.",
+            "Add `.agents/plugins/marketplace.json` with a `./plugins/codex-evals` entry.",
         )
     try:
         payload = json.loads(marketplace_path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
-        return _check("Packaged marketplace", "fail", f"Invalid marketplace JSON: {exc}.", "Fix root `marketplace.json`.")
+        return _check("Packaged marketplace", "fail", f"Invalid marketplace JSON: {exc}.", "Fix `.agents/plugins/marketplace.json`.")
     plugins = payload.get("plugins", [])
     if any(plugin.get("name") == PLUGIN_NAME and plugin.get("source", {}).get("path") == "./plugins/codex-evals" for plugin in plugins):
         return _check(
             "Packaged marketplace",
             "ok",
-            "Root marketplace.json exposes `plugins/codex-evals`.",
+            "`.agents/plugins/marketplace.json` exposes `plugins/codex-evals`.",
             "Use Add marketplace with this repo as Source.",
         )
     return _check(
         "Packaged marketplace",
         "fail",
-        "Root marketplace.json does not expose `plugins/codex-evals`.",
+        "`.agents/plugins/marketplace.json` does not expose `plugins/codex-evals`.",
         "Add a plugin entry whose source path is `./plugins/codex-evals`.",
     )
 

@@ -46,8 +46,8 @@ internal deliberation.
   workflow, boundaries, and output guidance.
 - **Plugin**: A packaged Codex capability with `.codex-plugin/plugin.json`,
   commands, skills, and optional support files.
-- **Marketplace**: A `marketplace.json` that exposes one or more plugins for
-  Codex Add Marketplace.
+- **Marketplace**: A supported Codex marketplace file that exposes one or more
+  plugins. This repo uses `.agents/plugins/marketplace.json`.
 - **Bundle**: A thread plus related artifacts, especially created or modified
   skills/plugins.
 - **Receipt**: Concrete evidence: file path, diff, test result, command output,
@@ -115,8 +115,8 @@ the product plugin-first.
 When improving this repo:
 
 1. Keep `/eval` as the simplest possible entrypoint.
-2. Update the marketplace, plugin command, skills, README, and tests together
-   when behavior changes.
+2. Update `.agents/plugins/marketplace.json`, plugin command, skills, README,
+   and tests together when behavior changes.
 3. Preserve Markdown as the default human output and JSON as the machine-readable
    equivalent.
 4. Keep onboarding plugin-first: Add Marketplace, install, run `/eval`.
@@ -126,7 +126,7 @@ When improving this repo:
 ## Repo Map
 
 ```text
-marketplace.json
+.agents/plugins/marketplace.json
 plugins/codex-evals/
 +-- .codex-plugin/plugin.json
 +-- commands/eval.md
@@ -146,7 +146,7 @@ Before handing off changes, run:
 
 ```bash
 python3 -m unittest
-python3 -m json.tool marketplace.json
+python3 -m json.tool .agents/plugins/marketplace.json
 python3 -m json.tool plugins/codex-evals/.codex-plugin/plugin.json
 git diff --check
 ```
